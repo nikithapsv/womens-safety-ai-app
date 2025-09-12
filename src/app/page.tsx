@@ -8,7 +8,11 @@ import ContactManagement from "@/components/ContactManagement";
 import SettingsPrivacy from "@/components/SettingsPrivacy";
 import IncidentVault from "@/components/IncidentVault";
 import OnboardingFlow from "@/components/OnboardingFlow";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import Image from "next/image";
+import Link from "next/link";
+import DiscreetSOS from "@/components/DiscreetSOS";
+import { DistressDetectorDemo } from "@/lib/nlp-intent";
 
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,7 +28,7 @@ import {
   Languages,
 } from "lucide-react";
 
-type SectionKey = "dashboard" | "emergency" | "contacts" | "settings" | "vault" | "setup";
+type SectionKey = "dashboard" | "emergency" | "contacts" | "settings" | "vault" | "setup" | "analyzer";
 type Locale = "en" | "hi" | "te";
 
 export default function Page() {
@@ -44,15 +48,22 @@ export default function Page() {
     >
       <div className="mx-auto max-w-6xl px-4 py-3 sm:py-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 min-w-0">
-          <div className={cn("inline-flex h-9 w-9 items-center justify-center rounded-md", emergencyActive ? "bg-white/10" : "bg-primary/10")}>
-            <ShieldCheck className={cn("h-5 w-5", emergencyActive ? "text-white" : "text-primary")} aria-hidden="true" />
+          <div className={cn("inline-flex h-9 w-9 items-center justify-center rounded-md overflow-hidden", emergencyActive ? "bg-white/10" : "bg-primary/10")}>
+            <Image
+              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1757662879639-swapt40byxl.png"
+              alt="Liora logo"
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+              priority
+            />
           </div>
           <div className="min-w-0">
             <p className={cn("font-semibold leading-tight truncate", emergencyActive ? "text-white" : "text-foreground")}>
-              Aegis
+              Liora
             </p>
             <p className={cn("text-xs truncate", emergencyActive ? "text-white/80" : "text-muted-foreground")}>
-              Women’s safety companion
+              Women's safety companion
             </p>
           </div>
         </div>
@@ -79,6 +90,12 @@ export default function Page() {
               <Siren className="mr-2 h-4 w-4" aria-hidden="true" />
               SOS
             </Button>
+            <Button asChild variant="ghost" className={cn("h-9 px-3", emergencyActive ? "text-white hover:bg-white/20" : "")}> 
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button asChild className={cn("h-9", emergencyActive ? "bg-white/10 text-white hover:bg-white/20 border-white/20" : "")}> 
+              <Link href="/register">Register</Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -87,7 +104,7 @@ export default function Page() {
 
   const BottomNav = (
     <nav className="fixed bottom-0 inset-x-0 z-30 border-t bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden">
-      <div className="mx-auto max-w-6xl grid grid-cols-5">
+      <div className="mx-auto max-w-6xl grid grid-cols-6">
         <NavButton
           active={section === "dashboard"}
           label="Home"
@@ -117,6 +134,12 @@ export default function Page() {
           label="Settings"
           icon={Settings2}
           onClick={() => setSection("settings")}
+        />
+        <NavButton
+          active={section === "analyzer"}
+          label="Analyzer"
+          icon={Languages}
+          onClick={() => setSection("analyzer")}
         />
       </div>
     </nav>
@@ -161,6 +184,12 @@ export default function Page() {
           label="Setup"
           icon={ShieldCheck}
           onClick={() => setSection("setup")}
+        />
+        <SideItem
+          active={section === "analyzer"}
+          label="Analyzer"
+          icon={Languages}
+          onClick={() => setSection("analyzer")}
         />
       </div>
     </aside>
@@ -215,6 +244,12 @@ export default function Page() {
                 <IncidentVault className="w-full" />
               )}
 
+              {section === "analyzer" && (
+                <div className="w-full">
+                  <DistressDetectorDemo />
+                </div>
+              )}
+
               {section === "setup" && (
                 <OnboardingFlow
                   defaultLanguage={locale}
@@ -236,6 +271,14 @@ export default function Page() {
       {Header}
       {Main}
       {BottomNav}
+      <DiscreetSOS
+        onSOS={() => {
+          setEmergencyActive(true);
+          setSection("emergency");
+        }}
+        isEmergencyMode={emergencyActive}
+        locale={locale}
+      />
       <Toaster richColors closeButton />
     </div>
   );
