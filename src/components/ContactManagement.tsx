@@ -491,7 +491,7 @@ export default function ContactManagement({
       style={style}
       aria-label="Trusted contacts and emergency services management"
     >
-      <Card className="bg-card border rounded-2xl shadow-sm">
+      <Card className="bg-card border rounded-2xl shadow-sm animate-fade-slide-up">
         <CardHeader className="gap-2">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">

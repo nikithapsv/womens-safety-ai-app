@@ -193,6 +193,9 @@ export default function SafetyDashboard({
     ? "bg-destructive text-destructive-foreground hover:bg-destructive/90"
     : "bg-primary text-primary-foreground hover:bg-primary/90"
 
+  // animations for status
+  const statusAnim = emergencyMode ? "animate-ripple glow-urgent" : isActive ? "animate-pulse glow-soft" : ""
+
   return (
     <div className={className}>
       <TooltipProvider delayDuration={200}>
@@ -213,7 +216,7 @@ export default function SafetyDashboard({
                     <div className="flex items-center gap-2 mt-1">
                       <Badge
                         variant="secondary"
-                        className={`px-2 py-0.5 text-[11px] sm:text-xs ${statusBadgeClasses} border-0`}
+                        className={`px-2 py-0.5 text-[11px] sm:text-xs ${statusBadgeClasses} border-0 ${statusAnim}`}
                       >
                         {isActive ? "Monitoring: Active" : "Monitoring: Paused"}
                       </Badge>
@@ -359,7 +362,7 @@ export default function SafetyDashboard({
                     <Button
                       onClick={handleSilentSOS}
                       aria-label="Send silent SOS"
-                      className="h-12 sm:h-14 rounded-md bg-muted hover:bg-muted/80 text-foreground"
+                      className="h-12 sm:h-14 rounded-md bg-muted hover:bg-muted/80 text-foreground transition-all duration-300 hover:scale-[1.02] glow-soft"
                     >
                       <div className="flex items-center gap-2">
                         <span className="relative inline-flex">
@@ -372,14 +375,14 @@ export default function SafetyDashboard({
                     <Button
                       onClick={handlePanic}
                       aria-label="Activate panic alarm"
-                      className={`h-12 sm:h-14 rounded-md ${primaryActionClasses} font-semibold`}
+                      className={`h-12 sm:h-14 rounded-md ${primaryActionClasses} font-semibold transition-all duration-300 hover:scale-[1.03] ${emergencyMode ? "animate-ripple glow-urgent" : "animate-heartbeat glow-soft"}`}
                     >
                       Panic
                     </Button>
                     <Button
                       onClick={handleContacts}
                       aria-label="Open trusted contacts"
-                      className="h-12 sm:h-14 rounded-md bg-accent hover:bg-accent/80 text-accent-foreground"
+                      className="h-12 sm:h-14 rounded-md bg-accent hover:bg-accent/80 text-accent-foreground transition-all duration-300 hover:scale-[1.02]"
                     >
                       Contacts ({trustedContactsCount})
                     </Button>

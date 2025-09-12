@@ -293,7 +293,7 @@ export default function EmergencyFlow({
       // begin incident and first location ping
       startIncident().then(() => sendLocationPing()).catch(() => {})
 
-      vibrate([40, 60, 40])
+      vibrate([40, 60, 40, 40, 10])
 
       // preparing secure channel
       timers.push(
@@ -358,6 +358,8 @@ export default function EmergencyFlow({
 
   const handleActivate = () => {
     setActive(true)
+    // subtle vibration pattern for silent activation
+    if (silent) vibrate([10, 30, 10, 30, 10])
     toast.warning(t.emergencyStarted, { duration: 2000 })
     onActivate?.()
   }
@@ -418,7 +420,7 @@ export default function EmergencyFlow({
             variant={active ? "destructive" : "secondary"}
             className={cn(
               "shrink-0",
-              active ? "bg-white/10 text-white border-white/20" : ""
+              active ? "bg-white/10 text-white border-white/20 animate-ripple glow-urgent" : "animate-heartbeat glow-soft"
             )}
           >
             <span className="flex items-center gap-1.5">
@@ -436,7 +438,7 @@ export default function EmergencyFlow({
         </div>
       </CardHeader>
 
-      <CardContent className={cn("p-4 sm:p-6", active ? "bg-destructive/5" : "")}>
+      <CardContent className={cn("p-4 sm:p-6 transition-colors", active ? "bg-destructive/5" : "", active && silent ? "brightness-[.92]" : "")}>
         <div className={cn("rounded-lg border p-3 sm:p-4", subtlePanel)}>
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
@@ -699,22 +701,28 @@ function QuickAction({
 }) {
   const Comp = href ? "a" : "button"
   const base =
-    "group inline-flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors min-h-11 w-full"
+    "group inline-flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm transition-all duration-300 hover:scale-[1.02] min-h-11 w-full"
   const styles = emphasis
     ? "bg-primary text-primary-foreground hover:bg-primary/90 border-transparent"
     : subtle
     ? "bg-secondary hover:bg-secondary/80 border-border text-foreground"
     : "bg-card hover:bg-muted border-border text-foreground"
+  // micro-interactions
+  const extras = emphasis && !disabled
+    ? "animate-heartbeat glow-soft"
+    : subtle && !disabled
+    ? "animate-wiggle"
+    : ""
   return (
     <Comp
-      className={cn(base, styles, disabled && "opacity-60 pointer-events-none")}
+      className={cn(base, styles, extras, disabled && "opacity-60 pointer-events-none")}
       onClick={onClick}
       {...(href ? { href, target: href.startsWith("http") ? "_blank" : undefined, rel: href.startsWith("http") ? "noreferrer" : undefined } : {})}
       aria-disabled={disabled}
     >
       <Icon className="h-4 w-4" aria-hidden />
       <span className="truncate">{label}</span>
-      {active ? <span className="ml-auto h-2 w-2 rounded-full bg-green-400" /> : null}
+      {active ? <span className="ml-auto h-2 w-2 rounded-full bg-green-400 animate-pulse" /> : null}
     </Comp>
   )
 }
@@ -777,7 +785,7 @@ function ProgressBlock({
   active?: boolean
 }) {
   return (
-    <div className={cn("rounded-lg border p-3 sm:p-4", active ? "bg-white/5 border-white/20" : "bg-card border-border")}>
+    <div className={cn("rounded-lg border p-3 sm:p-4 glow-soft", active ? "bg-white/5 border-white/20" : "bg-card border-border")}>
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <Siren className={cn("h-4 w-4", active ? "text-white" : "text-primary")} aria-hidden />

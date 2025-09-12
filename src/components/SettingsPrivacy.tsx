@@ -195,7 +195,7 @@ export default function SettingsPrivacy({
       )}
       aria-label="Settings and Privacy"
     >
-      <Card className="bg-card border border-border">
+      <Card className="bg-card border border-border animate-fade-slide-up">
         <CardHeader className="gap-1">
           <div className="flex items-center gap-2">
             <Settings className="h-5 w-5 text-primary" aria-hidden="true" />

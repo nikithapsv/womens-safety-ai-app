@@ -415,6 +415,7 @@ export default function IncidentVault({
         className={cn(
           "bg-card text-foreground border shadow-sm rounded-xl w-full",
           "transition-colors duration-200",
+          "animate-fade-slide-up",
           className
         )}
         aria-label="Incident Vault"

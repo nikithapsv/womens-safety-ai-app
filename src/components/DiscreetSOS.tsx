@@ -107,13 +107,16 @@ export const DiscreetSOS: React.FC<DiscreetSOSProps> = ({
         !isEmergencyMode && [
           "bg-primary/15 text-primary hover:bg-primary/25",
           "backdrop-blur-sm border border-primary/20 shadow-lg",
-          "hover:shadow-xl hover:scale-105"
+          "hover:shadow-xl hover:scale-105",
+          // calm heartbeat + soft glow
+          "animate-heartbeat glow-soft",
         ],
         // Emergency mode styling
         isEmergencyMode && [
           "bg-destructive/20 text-destructive hover:bg-destructive/30",
           "backdrop-blur-sm border border-destructive/30 shadow-lg",
-          "animate-pulse hover:shadow-xl hover:scale-105"
+          // urgent ripple + stronger glow
+          "animate-ripple glow-urgent hover:shadow-xl hover:scale-105",
         ],
         // Pressed state
         isPressed && "scale-95 shadow-inner",
