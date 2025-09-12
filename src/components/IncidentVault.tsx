@@ -356,7 +356,7 @@ export default function IncidentVault({
     try {
       if (typeof window !== "undefined" && (navigator as any)?.share) {
         await (navigator as any).share({
-          title: `Aegis Incident: ${activeIncident.title}`,
+          title: `Liora Incident: ${activeIncident.title}`,
           text: `Encrypted incident package (${payload.evidence.length} evidence items)`,
         });
         toast.success("Shared securely");

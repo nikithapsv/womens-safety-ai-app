@@ -93,7 +93,7 @@ export default function SafetyDashboard({
     setIsActive(next)
     if (next) {
       toast.success("Monitoring activated", {
-        description: "Aegis is now watching over you.",
+        description: "Liora is now watching over you.",
       })
     } else {
       toast("Monitoring paused", {
@@ -144,7 +144,7 @@ export default function SafetyDashboard({
 
   function handleHelp() {
     toast("Help Center", {
-      description: "Learn how Aegis protects you in emergencies.",
+      description: "Learn how Liora protects you in emergencies.",
     })
   }
 
@@ -208,7 +208,7 @@ export default function SafetyDashboard({
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm sm:text-base font-semibold font-heading leading-none truncate">
-                      Aegis Safety
+                      Liora Safety
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <Badge
@@ -492,7 +492,7 @@ export default function SafetyDashboard({
                       <div className="min-w-0">
                         <p className="text-sm font-medium">Battery optimization recommended</p>
                         <p className="text-xs text-muted-foreground">
-                          Allow Aegis to run reliably in the background for uninterrupted protection.
+                          Allow Liora to run reliably in the background for uninterrupted protection.
                         </p>
                       </div>
                       <div className="ml-auto shrink-0">

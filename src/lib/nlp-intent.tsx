@@ -58,10 +58,6 @@ export const DistressDetectorDemo = () => {
               <Sparkles className="w-4 h-4" />
             </div>
           </div>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Cutting-edge multilingual natural language processing system that intelligently identifies distress signals 
-            and emergency phrases across English, Hindi, and Telugu languages with precision and care.
-          </p>
         </div>
 
         {/* Main Detection Interface */}
@@ -75,7 +71,7 @@ export const DistressDetectorDemo = () => {
               Intelligent Text Analysis
             </CardTitle>
             <CardDescription className="text-base">
-              Enter text to analyze for distress signals, emergency indicators, and safety concerns using advanced NLP
+              Type a message to check for distress cues.
             </CardDescription>
           </CardHeader>
           <CardContent className="relative space-y-8">

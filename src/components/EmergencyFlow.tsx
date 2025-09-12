@@ -209,13 +209,13 @@ export default function EmergencyFlow({
   const clientIdRef = React.useRef<string>("")
   React.useEffect(() => {
     if (typeof window === "undefined") return
-    const existing = localStorage.getItem("aegis_client_id")
+    const existing = localStorage.getItem("liora_client_id")
     if (existing) {
       clientIdRef.current = existing
     } else {
       const id = Math.random().toString(36).slice(2)
       clientIdRef.current = id
-      localStorage.setItem("aegis_client_id", id)
+      localStorage.setItem("liora_client_id", id)
     }
   }, [])
 

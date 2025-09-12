@@ -366,7 +366,7 @@ export default function SettingsPrivacy({
                           </SelectContent>
                         </Select>
                         <p className="text-xs text-muted-foreground">
-                          Control how Aegis accesses location to keep you safe and private.
+                          Control how Liora accesses location to keep you safe and private.
                         </p>
                       </div>
 
@@ -797,7 +797,7 @@ export default function SettingsPrivacy({
                 <div className={cn(sectionCard, "p-4 sm:p-6")}>
                   <div className="space-y-4">
                     <p className="text-sm text-muted-foreground break-words">
-                      Aegis collects minimal data necessary for safety features. You can opt out anytime.
+                      Liora collects minimal data necessary for safety features. You can opt out anytime.
                       Consent enables proactive monitoring, emergency messaging, and incident logs stored securely on
                       your device unless you choose to share them.
                     </p>

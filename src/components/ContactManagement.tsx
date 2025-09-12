@@ -1211,7 +1211,7 @@ function EmergencyServices({
         <CardContent>
           <div className="rounded-lg border bg-muted/40 p-3">
             <p className="text-sm">
-              Aegis will first contact 112 India, then notify your emergency group by call and message,
+              Liora will first contact 112 India, then notify your emergency group by call and message,
               followed by enabled services like Local Police App and Nearest Hospital. Location sharing
               is controlled by your preferences.
             </p>
@@ -1277,7 +1277,7 @@ function CommunicationPreferences({
             </div>
             <Separator />
             <p className="text-xs text-muted-foreground px-3 py-2">
-              Allow Aegis to send calls and messages during SOS.
+              Allow Liora to send calls and messages during SOS.
             </p>
           </div>
 
