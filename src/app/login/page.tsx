@@ -1,6 +1,6 @@
-"use client"; // 👈 add this because it's a client-side page in Next.js (App Router)
+"use client"; // Client-side page (App Router)
 
-import React from "react"; // 👈 ensures JSX types are available
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
