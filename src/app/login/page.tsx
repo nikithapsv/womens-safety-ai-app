@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
-export default function LoginPage(): JSX.Element {
+export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative bg-gradient-to-br from-[#3b1d96] via-[#7b3fe4] to-[#ff4f8b]">
       <div className="w-full max-w-sm mx-auto rounded-xl border p-6 shadow-lg relative bg-white/10 border-white/20 backdrop-blur-md text-white animate-fade-slide-up">
